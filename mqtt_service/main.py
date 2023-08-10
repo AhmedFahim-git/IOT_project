@@ -31,7 +31,7 @@ def on_connect(client, userdata, flags, return_code):
 
 def write_db(timestamp: str, moisture: int):
     cursor.execute(
-        f"INSERT into moistures (Times, moisture) values ('{timestamp}', {moisture})"
+        f"INSERT into moistures (reading_timestamp, moisture) values ('{timestamp}', {moisture})"
     )
     connection.commit()
 
@@ -46,7 +46,7 @@ def on_message(client, userdata, message):
 
 def init_db():
     cursor.execute(
-        "CREATE TABLE if not exists moistures (Times DATETIME NOT NULL PRIMARY KEY, moisture INT)"
+        "CREATE TABLE if not exists moistures (reading_timestamp DATETIME NOT NULL PRIMARY KEY, moisture INT)"
     )
 
 
