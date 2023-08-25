@@ -1,13 +1,36 @@
 services:
   ml_service:
+    container_name: ML_Service
     build: ml_service/
     restart: always
-    ports:
-      - 8000:8000
     depends_on:
       - db
+    # ports:
+    #   - 8000:8000
+
+  backend:
+    container_name: Backend
+    build: backend/
+    restart: always
+    depends_on:
+      - db
+      - ml_service
+    # ports:
+    #   - 8000:8000
+
+  webapp:
+    container_name: Streamlit_Webapp
+    build: streamlit_webapp/
+    restart: always
+    depends_on:
+      - db
+      - backend
+      - ml_service
+    ports:
+      - 8501:8501
 
   mqtt_service:
+    container_name: MQTT_service
     build: mqtt_service/
     restart: always
     depends_on:
@@ -16,6 +39,7 @@ services:
 
   db:
     image: mysql
+    container_name: MYSQL_DB
     command: --default-authentication-plugin=caching_sha2_password
     restart: always
     environment:
@@ -31,6 +55,7 @@ services:
   adminer:
     command: php -S 0.0.0.0:8080 -t /var/www/html # This command is only needed when the host doesn't support IPv6
     image: adminer
+    container_name: Adminer
     restart: always
     ports:
       - 8080:8080
@@ -39,6 +64,7 @@ services:
 
   mosquitto:
     build: mosquitto_broker/
+    container_name: MQTT_broker
     restart: always
     ports:
       - 1883:1883

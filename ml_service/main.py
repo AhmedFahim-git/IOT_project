@@ -21,8 +21,9 @@ connection = connect(host="db", user="user", password="password", database="read
 cursor = connection.cursor()
 
 
-@app.post("/moisture/")
+@app.post("/moisture")
 async def moisture(reading: Item):
+    print(reading)
     if reading.moisture < 1365:
         status = "high"
     elif reading.moisture < 2730:
