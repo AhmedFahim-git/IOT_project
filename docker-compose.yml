@@ -49,8 +49,8 @@ services:
       MYSQL_DATABASE: readings
     volumes:
       - my_db:/var/lib/mysql
-    ports:
-      - 3306:3306
+    # ports:
+    #   - 3306:3306
 
   adminer:
     command: php -S 0.0.0.0:8080 -t /var/www/html # This command is only needed when the host doesn't support IPv6
