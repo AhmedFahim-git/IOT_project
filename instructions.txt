@@ -1,0 +1,69 @@
+sudo apt update
+sudo apt upgrade
+sudo reboot
+
+sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
+sudo apt-get update
+sudo apt install mosquitto
+mkdir mosquitto
+mkdir mosquitto/config
+nano mosquitto/config/password.txt
+nano mosquitto/config/mosquitto.conf
+mosquitto_passwd -U /home/ubuntu/mosquitto/config/password.txt
+sudo service mosquitto stop
+sudo systemctl stop mosquitto.service
+/usr/sbin/mosquitto -c mosquitto/config/mosquitto.conf &
+
+
+sudo apt install mysql-server
+sudo service mysql status
+sudo mysql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'example';
+CREATE USER 'root'@'%' IDENTIFIED BY 'example';
+sudo mysql_secure_installation
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf    
+Change bind address to 0.0.0.0 https://www.digitalocean.com/community/tutorials/how-to-allow-remote-access-to-mysql
+sudo mysql -u root -p
+create database readings;
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
+grant all on readings.* to 'user'@'localhost';
+grant all on readings.* to 'user'@'%';
+grant all on *.* to 'root'@'%';
+
+sudo systemctl restart mysql
+
+
+sudo apt-get install python3-pip
+sudo pip3 install virtualenv
+virtualenv venv
+source venv/bin/activate
+
+mkdir mqtt_service
+cd mqtt_service
+virtualenv venv
+source venv/bin/activate
+pip install paho-mqtt
+pip install mysql-connector-python
+nano main.py
+python main.py
+
+
+mkdir backend
+cd backend
+virtualenv venv
+source venv/bin/activate
+nano requirements.txt
+pip install --no-cache-dir -r requirements.txt
+nano main.py
+uvicorn main:app --reload &
+
+
+mkdir streamlit_webapp
+cd streamlit_webapp
+virtualenv venv
+source venv/bin/activate
+nano requirements.txt
+pip install --no-cache-dir -r requirements.txt
+nano main.py
+streamlit run main.py --server.port=8501 --server.address=0.0.0.0
