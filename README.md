@@ -2,7 +2,7 @@
 
 The following doesn't work. Sorry. Follow instructions.txt instead.
 
-Some random text.
+Some other random text.
 
 To start the services run
 
