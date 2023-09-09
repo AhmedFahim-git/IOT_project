@@ -2,8 +2,6 @@
 
 The following doesn't work. Sorry. Follow instructions.txt instead.
 
-Random text.
-
 To start the services run
 
 ```bash
