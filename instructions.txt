@@ -46,7 +46,7 @@ source venv/bin/activate
 pip install paho-mqtt
 pip install mysql-connector-python
 nano main.py
-python main.py
+python main.py &
 
 
 mkdir backend
@@ -66,4 +66,4 @@ source venv/bin/activate
 nano requirements.txt
 pip install --no-cache-dir -r requirements.txt
 nano main.py
-streamlit run main.py --server.port=8501 --server.address=0.0.0.0
+streamlit run main.py --server.port=8501 --server.address=0.0.0.0 &
