@@ -1,5 +1,7 @@
 # Getting Started
 
+The following doesn't work. Sorry. Follow instructions.txt instead.
+
 To start the services run
 
 ```bash
