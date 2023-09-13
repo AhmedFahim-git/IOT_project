@@ -1,4 +1,6 @@
 # Getting Started
+![example workflow](https://github.com/AhmedFahim-git/IOT_project/actions/workflows/python_test.yml/badge.svg)
+
 
 The following doesn't work. Sorry. Follow instructions.txt instead.
 
