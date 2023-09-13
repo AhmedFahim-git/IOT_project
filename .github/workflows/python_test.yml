@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   do_stuff_yeah:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checking stuff out to remote machine where code will run
       uses: actions/checkout@v3
