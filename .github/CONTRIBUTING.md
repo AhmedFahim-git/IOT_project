@@ -1,3 +1,5 @@
+# Contributing guidelines
+
 ## Introduction
 
 Thanks for showing interest. Bla bla.
